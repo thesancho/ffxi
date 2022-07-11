@@ -1,0 +1,184 @@
+<ashitacast>
+	<settings>
+		<buffupdate>true</buffupdate>
+		<statusupdate>true</statusupdate>
+		<hpupdate>false</hpupdate>
+		<autoupdate>true</autoupdate>
+	</settings>
+
+	<sets>
+
+		<!-- Standing Idle Set -->
+		<set name = "Idle" >
+			<main>Earth Staff</main>
+			<sub></sub>
+			<range></range>
+			<ammo></ammo>
+			<head></head>
+			<body></body>
+			<hands></hands>
+			<legs></legs>
+			<feet></feet>
+			<neck></neck>
+			<waist></waist>
+			<ear1></ear1>
+			<ear2></ear2>
+			<ring1></ring1>
+			<ring2></ring2>
+			<back></back>
+		</set>
+
+		<!-- EPeen Idle Set -->
+		<set name = "EPeen"  baseset = "Idle" >
+		</set>
+
+		<!-- Resting hMP Set -->
+
+		<set name = "Rest" >
+			<main>Dark Staff</main>
+			<sub></sub>
+			<range></range>
+			<ammo></ammo>
+			<head></head>
+			<body></body>
+			<hands></hands>
+			<legs></legs>
+			<feet></feet>
+			<neck></neck>
+			<waist></waist>
+			<ear1></ear1>
+			<ear2></ear2>
+			<ring1></ring1>
+			<ring2></ring2>
+			<back></back>
+		</set>
+
+		<!-- Cure Set -->
+		<set name = "Cure" >
+			<main>Light Staff</main>
+			<sub></sub>
+			<range></range>
+			<ammo></ammo>
+			<head></head>
+			<body></body>
+			<hands></hands>
+			<legs></legs>
+			<feet></feet>
+			<neck></neck>
+			<waist></waist>
+			<ear1></ear1>
+			<ear2></ear2>
+			<ring1></ring1>
+			<ring2></ring2>
+			<back></back>
+		</set>
+
+		<!-- Base Enfeeb Set -->
+		<set name = "Enfeeb" >
+		</set>
+
+		<!-- Enfeeb Mind Set -->
+		<set name = "Enfeeb-Mnd" baseset = "Enfeeb" >
+		</set>
+
+		<!-- Enfeeb Int Set -->
+		<set name = "Enfeeb-Int" baseset = "Enfeeb" >
+		</set>
+
+		<!-- Elemental Magic Set -->
+		<set name = "Elemental" >
+		</set>
+
+		<!-- Enhancing Magic Set -->
+		<set name = "Enhancing" >
+		</set>
+
+		<!-- Fast Cast Set -->
+		<set name = "Fast Cast" >
+		</set>
+
+	</sets>
+
+	<!-- load w/ ashita -->
+	<init>
+		<command>/exec rdm_kb</command>
+		<command>/macro book 1</command>
+		<command delay = "1000">/macro set 1</command>
+	</init>
+
+	<inputcommands>
+		<cmd input = "/melee">
+			<if advanced = "$Melee=0">
+				<setvar name = "Melee" value = "1" />
+				<addtochat color="50">Melee On. Weapon Locked</addtochat>
+			</if>
+			<else>
+				<setvar name = "Melee" value = "0" />
+				<addtochat color="50">Melee Off. Weapon Unlocked</addtochat>
+			</else>
+		</cmd>
+	</inputcommands>
+	
+	<variables>
+
+		<var name = "Melee">0</var>
+
+		<!-- Elemental Staves -->
+		<var name = "EarthStaff">Earth Staff</var>
+		<var name = "WaterStaff">Water Staff</var>
+		<var name = "WindStaff">Wind Staff</var>
+		<var name = "FireStaff">Fire Staff</var>
+		<var name = "IceStaff">Ice Staff</var>
+		<var name = "ThunderStaff">Thunder Staff</var>
+		<var name = "LightStaff">Light Staff</var>
+		<var name = "DarkStaff">Dark Staff</var>
+	</variables>
+
+	<idlegear>
+		<if p_status = "resting">
+			<equip set = "Rest" />
+		</if>
+		<elseif p_status = "engaged">
+		</elseif>
+		<elseif p_status = "idle">
+			<equip set = "Idle" />
+		</elseif>
+
+	</idlegear>
+
+	<premagic>
+		<equip set = "Fast Cast" />
+	</premagic>
+
+
+	<midmagic>
+
+			<if ad_skill = "enfeeblingmagic">
+				<if ad_name = "Dia|Dia II|Paralyze|Paralyze II|Slow|Slow II" >
+					<equip set = "Enfeeb-Mnd" />
+					<equip>
+						<main>$%ad_elementStaff</main>
+					</equip>					
+				</if>
+				<elseif ad_name = "Bio|Bio II|Blind|Bind|Gravity|Sleep|Sleep II|Sleepga" >
+					<equip set = "Enfeeb-Int" />
+					<equip>
+						<main>$%ad_elementStaff</main>
+					</equip>	
+				</elseif>
+			</if>
+			<if ad_skill = "elementalmagic">
+				<equip set = "Elemental" />
+				<equip>
+					<main>$%ad_elementStaff</main>
+				</equip>	
+			</if>
+			<if ad_skill = "healingmagic">
+				<equip set = "Cure" />
+			</if>
+			<if ad_skill = "enhancingmagic" >
+				<equip set = "Enhancing" /> 
+			</if> 
+	</midmagic>
+
+</ashitacast>
