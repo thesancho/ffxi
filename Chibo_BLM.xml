@@ -96,14 +96,14 @@
 		<!-- Fast Cast Set -->
 		<set name = "Fast Cast" >
 		</set>
+		
+		<set name = "Dark" > 
+		</set>
 
 	</sets>
 
 	<!-- load w/ ashita -->
 	<init>
-		<command>/exec rdm_kb</command>
-		<command>/macro book 1</command>
-		<command delay = "1000">/macro set 1</command>
 	</init>
 
 	<inputcommands>
@@ -135,10 +135,19 @@
 	</variables>
 
 	<idlegear>
+		<if advanced = "$Melee!=0">
+			<equip lock = "true">
+				<main>%eq_main</main>
+				<sub>%eq_sub</sub>
+			</equip>
+		</if>
 		<if p_status = "resting">
 			<equip set = "Rest" />
 		</if>
 		<elseif p_status = "engaged">
+			<if advanced = "$Melee=1">
+				<equip set = "TP" />
+			</if>
 		</elseif>
 		<elseif p_status = "idle">
 			<equip set = "Idle" />
@@ -147,38 +156,63 @@
 	</idlegear>
 
 	<premagic>
+		<if advanced = "$Melee!=0">
+			<equip lock = "true">
+				<main>%eq_main</main>
+				<sub>%eq_sub</sub>
+			</equip>
+		</if>
 		<equip set = "Fast Cast" />
 	</premagic>
 
 
 	<midmagic>
-
-			<if ad_skill = "enfeeblingmagic">
-				<if ad_name = "Dia|Dia II|Paralyze|Paralyze II|Slow|Slow II" >
-					<equip set = "Enfeeb-Mnd" />
-					<equip>
-						<main>$%ad_elementStaff</main>
-					</equip>					
-				</if>
-				<elseif ad_name = "Bio|Bio II|Blind|Bind|Gravity|Sleep|Sleep II|Sleepga" >
-					<equip set = "Enfeeb-Int" />
-					<equip>
-						<main>$%ad_elementStaff</main>
-					</equip>	
-				</elseif>
+		<if advanced = "$Melee!=0">
+			<equip lock = "true">
+				<main>%eq_main</main>
+				<sub>%eq_sub</sub>
+			</equip>
+		</if>
+		<if ad_skill = "enfeeblingmagic">
+			<if ad_name = "Dia|Dia II|Paralyze|Paralyze II|Slow|Slow II" >
+				<equip set = "Enfeeb-Mnd" />
+				<equip>
+					<main>$%ad_elementStaff</main>
+				</equip>					
 			</if>
-			<if ad_skill = "elementalmagic">
-				<equip set = "Elemental" />
+			<elseif ad_name = "Bio|Bio II|Blind|Bind|Gravity|Sleep|Sleep II|Sleepga" >
+				<equip set = "Enfeeb-Int" />
 				<equip>
 					<main>$%ad_elementStaff</main>
 				</equip>	
-			</if>
-			<if ad_skill = "healingmagic">
-				<equip set = "Cure" />
-			</if>
-			<if ad_skill = "enhancingmagic" >
-				<equip set = "Enhancing" /> 
-			</if> 
+			</elseif>
+		</if>
+		
+		<if ad_skill = "elementalmagic">
+			<equip set = "Elemental" />
+			<equip>
+				<main>$%ad_elementStaff</main>
+			</equip>	
+		</if>
+		
+		<if ad_skill = "darkmagic">
+			<equip set = "Dark" />
+			<equip>
+				<main>$%ad_elementStaff</main>
+			</equip>	
+		</if>
+		
+		<if ad_skill = "healingmagic">
+			<equip set = "Cure" />
+		</if>
+		
+		<if ad_skill = "enhancingmagic" >
+			<equip set = "Enhancing" /> 
+		</if> 
+		
+		<if ad_name = "Sneak" >
+			<command>/cancel 71</command>
+		</if>
 	</midmagic>
 
 </ashitacast>
