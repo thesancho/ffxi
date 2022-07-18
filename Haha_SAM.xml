@@ -101,6 +101,10 @@
 		
 	</sets>
 	
+	<init>
+		<command>/exec hahasam</command>
+	</init>
+	
 	<inputcommands>
 	
 		<cmd input = "/tphaste" >
