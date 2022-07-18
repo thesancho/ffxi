@@ -1,0 +1,177 @@
+<ashitacast>
+	
+	<settings> <!--Contains settings specific to this xml, must be set to true/false to override default-->
+		<buffupdate>true</buffupdate> <!--Determines if your idlegear will be parsed when you gain/lose a buff. Default: TRUE -->
+		<statusupdate>true</statusupdate> <!--Determines if your idlegear will be parsed when you change status(stand/rest/engage/etc).  Default: TRUE -->
+		<hpupdate>false</hpupdate> <!--Determines if your idlegear will be parsed when your HP % changes.  Default: TRUE -->
+		<autoupdate>true</autoupdate> <!--Determines if your idlegear will be parsed on outgoing status updates(roughly every 350ms).  Default: TRUE-->
+	</settings>
+	
+	<sets>
+		<set name = "Stand-Base">
+			<head></head>
+			<neck></neck>
+			<lear></lear>
+			<rear></rear>
+			<body></body>
+			<hands></hands>
+			<lring></lring>
+			<rring></rring>
+			<back></back>
+			<waist></waist>
+			<legs></legs>
+			<feet></feet>
+		</set>	
+		
+		<set name = "Stand-Mining">
+			<head></head>
+			<neck></neck>
+			<lear></lear>
+			<rear></rear>
+			<body></body>
+			<hands></hands>
+			<lring></lring>
+			<rring></rring>
+			<back></back>
+			<waist></waist>
+			<legs></legs>
+			<feet></feet>
+		</set>	
+		
+		<set name = "TP-Haste">
+			<head></head>
+			<neck></neck>
+			<lear></lear>
+			<rear></rear>
+			<body></body>
+			<hands></hands>
+			<lring></lring>
+			<rring></rring>
+			<back></back>
+			<waist></waist>
+			<legs></legs>
+			<feet></feet>
+		</set>	
+		
+		<set name = "TP-ACC">
+			<head></head>
+			<neck></neck>
+			<lear></lear>
+			<rear></rear>
+			<body></body>
+			<hands></hands>
+			<lring></lring>
+			<rring></rring>
+			<back></back>
+			<waist></waist>
+			<legs></legs>
+			<feet></feet>
+		</set>
+		
+		<set name = "TP-EVA">
+		</set>
+		
+		<set name = "MDT">
+		</set>
+		
+		<set name = "PDT">
+		</set>
+		
+		
+		<set name = "WS-STR">
+			<head></head>
+			<neck></neck>
+			<lear></lear>
+			<rear></rear>
+			<body></body>
+			<hands></hands>
+			<lring></lring>
+			<rring></rring>
+			<back></back>
+			<waist></waist>
+			<legs></legs>
+			<feet></feet>
+		</set>
+		
+		<set name = "Ninjitsu">
+		</set>
+		
+		<set name = "Meditate">
+		</set>
+		
+	</sets>
+	
+	<inputcommands>
+	
+		<cmd input = "/tphaste" >
+			<setvar name = "TP" value = "Haste" />
+			<addtochat color = "50" > TP Set : HASTE </addtochat>
+		</cmd>
+		
+		<cmd input = "/tpacc">
+			<setvar name = "TP" value = "ACC" />
+			<addtochat color = "50" > TP Set : ACCURACY </addtochat>
+		</cmd>
+		
+		<cmd input = "/tpeva">
+			<setvar name = "TP" value = "EVA" />
+			<addtochat color = "50" > TP Set : EVASION </addtochat>
+		</cmd>
+		
+		<cmd input = "/mining" > 
+			<setvar name = "Stand" vale = "Mining" />
+			<addtochat color = "50" > Stand : Mining </addtochat>
+		</cmd>
+		
+		<cmd input = "/stand" >
+			<setvar name = "Stand" value = "Base" />
+			<addtochat color = "50" > Stand : Base </addtochat>
+		</cmd>
+		
+	</inputcommands>  
+	
+	
+	<variables>
+		<var name = "Stand">Base</var>
+		<var name = "TP">Haste</var>
+		<var name = "WS">STR</var>
+	</variables>
+	
+	<idlegear>
+		<if eq_rring = "Empress Band">
+			<equip lock = "true"> 
+				<rring>Empress Band</rring>
+			</equip>
+		</if>
+		<if p_status="engaged">
+			<equip set = "TP-$TP" />
+		</if>
+		<else>
+			<equip set = "Stand-$Stand" />
+		</else>
+	</idlegear>
+
+	<jobability>
+		<if ad_name = "Meditate">
+			<equip set = "Meditate" />
+		</if>
+		<if ad_name = "Spectral Jig">
+			<command>/cancel 71</command>
+		</if>
+	</jobability>
+
+	<weaponskill>
+		<equip set = "WS-$WS" />
+			<gearlock length = "2" />
+	</weaponskill>
+	
+	<precast>
+	</precast>
+	
+	<midcast>
+		<if ad_name ="Monomi:*" >
+			<command>/cancel 71</command>
+		</if>
+	</midcast>
+	
+</ashitacast>
