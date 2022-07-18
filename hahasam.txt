@@ -1,0 +1,7 @@
+/bindblock
+
+/bind ^+F1 /tphasta
+/bind ^+F2 /tpacc;
+/bind ^+F3 /tpeva;
+/bind ^+F4 /mining;
+/bind ^+F5 /stand;
