@@ -71,7 +71,19 @@
 		<set name = "TP-EVA">
 		</set>
 		
-		<set name = "MDT">
+		<set name = "TP-MDT">
+			<head></head>
+			<neck></neck>
+			<lear></lear>
+			<rear></rear>
+			<body></body>
+			<hands></hands>
+			<lring></lring>
+			<rring></rring>
+			<back></back>
+			<waist></waist>
+			<legs></legs>
+			<feet></feet>
 		</set>
 		
 		<set name = "PDT">
@@ -101,10 +113,6 @@
 		
 	</sets>
 	
-	<init>
-		<command>/exec hahasam</command>
-	</init>
-	
 	<inputcommands>
 	
 		<cmd input = "/tphaste" >
@@ -123,13 +131,18 @@
 		</cmd>
 		
 		<cmd input = "/mining" > 
-			<setvar name = "Stand" vale = "Mining" />
+			<setvar name = "Stand" value = "Mining" />
 			<addtochat color = "50" > Stand : Mining </addtochat>
 		</cmd>
 		
 		<cmd input = "/stand" >
 			<setvar name = "Stand" value = "Base" />
 			<addtochat color = "50" > Stand : Base </addtochat>
+		</cmd>
+		
+		<cmd input = "/MDT">
+			<setvar name = "TP" value ="MDT">
+			<addtochat color = "50" > TP Set : MDT </addtochat>
 		</cmd>
 		
 	</inputcommands>  
