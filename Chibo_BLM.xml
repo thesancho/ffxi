@@ -99,6 +99,12 @@
 		
 		<set name = "Dark" > 
 		</set>
+		
+		<set name = "Stoneskin">
+		</set>
+		
+		<set name = "Enhancing">
+		</set>
 
 	</sets>
 
@@ -174,7 +180,7 @@
 			</equip>
 		</if>
 		<if ad_skill = "enfeeblingmagic">
-			<if ad_name = "Dia|Dia II|Paralyze|Paralyze II|Slow|Slow II" >
+			<if ad_name = "Dia|Dia II|Paralyze|Paralyze II|Slow|Slow II|Silence" >
 				<equip set = "Enfeeb-Mnd" />
 				<equip>
 					<main>$%ad_elementStaff</main>
