@@ -86,7 +86,43 @@
 		</set>
 
 		<!-- Elemental Magic Set -->
-		<set name = "Elemental" >
+		<set name = "Nuke" >
+		</set>
+		
+		<set name = "Nuke-MAB" baseset = "Nuke">
+			<sub></sub>
+			<range></range>
+			<ammo></ammo>
+			<head></head>
+			<body></body>
+			<hands></hands>
+			<legs></legs>
+			<feet></feet>
+			<neck></neck>
+			<waist></waist>
+			<ear1></ear1>
+			<ear2></ear2>
+			<ring1></ring1>
+			<ring2></ring2>
+			<back></back>
+		</set>
+		
+		<set name = "Nuke-Elemental" baseset = "Nuke">
+			<sub></sub>
+			<range></range>
+			<ammo></ammo>
+			<head></head>
+			<body></body>
+			<hands></hands>
+			<legs></legs>
+			<feet></feet>
+			<neck></neck>
+			<waist></waist>
+			<ear1></ear1>
+			<ear2></ear2>
+			<ring1></ring1>
+			<ring2></ring2>
+			<back></back>
 		</set>
 
 		<!-- Enhancing Magic Set -->
@@ -98,12 +134,6 @@
 		</set>
 		
 		<set name = "Dark" > 
-		</set>
-		
-		<set name = "Stoneskin">
-		</set>
-		
-		<set name = "Enhancing">
 		</set>
 
 	</sets>
@@ -123,10 +153,21 @@
 				<addtochat color="50">Melee Off. Weapon Unlocked</addtochat>
 			</else>
 		</cmd>
+		
+		<cmd input = "/mab">
+			<setvar name = "Nuke" value = "MAB" />
+			<addtochat color = "50"> Nuking Set. MAB </addtochat>
+		</cmd>
+		
+		<cmd input = "/ele">
+			<setvar name = "Nuke" value = "Elemental" />
+			<addtochat color = "50"> Nuke Set. Elemental Magic Skill </addtochat>
+		</cmd>
 	</inputcommands>
 	
 	<variables>
 
+		<var name = "Nuke">MAB</var>
 		<var name = "Melee">0</var>
 
 		<!-- Elemental Staves -->
@@ -195,7 +236,7 @@
 		</if>
 		
 		<if ad_skill = "elementalmagic">
-			<equip set = "Elemental" />
+			<equip set = "Nuke-$Nuke" />
 			<equip>
 				<main>$%ad_elementStaff</main>
 			</equip>	
@@ -219,6 +260,7 @@
 		<if ad_name = "Sneak" >
 			<command>/cancel 71</command>
 		</if>
+		
 	</midmagic>
 
 </ashitacast>
